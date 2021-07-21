@@ -42,7 +42,6 @@ jobs:
          tags: v1, latest
          registry: registry-url.io
          dockerfile: ./Dockerfile
-         docker push sri110/myrepo:tagname
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
 
