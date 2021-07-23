@@ -35,14 +35,38 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Build & push Docker image
-        with:
-         image: sri110/myrepo
-         tags: v1, latest
-         registry: docker.io
-         dockerfile: ./Dockerfile
-         username: ${{ secrets.DOCKER_USERNAME }}
-         password: ${{ secrets.DOCKER_PASSWORD }}
+      #- uses: mr-smithers-excellent/docker-build-push@v5
+       # name: Build & push Docker image
+        # with:
+         # image: sri110/myrepo
+         # tags: v1, latest
+        # registry: docker.io
+         # dockerfile: ./Dockerfile
+         # username: ${{ secrets.DOCKER_USERNAME }}
+         # password: ${{ secrets.DOCKER_PASSWORD }}
+
+name: Deploy Container image to aws ECR
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs: 
+    aws_ecr_dockerfile_deploy:
+        runs-on: ubuntu-latest
+        name: AWS ecr deploy- A job that deploys a image container using a aws_ecr_dockerfile_deploy
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Deploy container image to AWS ECR
+              uses: nyakaz73/aws-ecr-deploy@v0.08
+              id: deploy 
+              with:
+                access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                image_name: myapp
+                repo_uri: 877976363238.dkr.ecr.us-west-2.amazonaws.com/myprojectdemo
+            - name: Get the output status
+              run: echo "${{ steps.deploy.outputs.status }}"
 
 
