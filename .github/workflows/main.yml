@@ -17,7 +17,7 @@ jobs:
               with:
                 access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                image_name: myapp
+                image_name: myprojectdemo
                 repo_uri: 877976363238.dkr.ecr.us-west-2.amazonaws.com/myprojectdemo
             - name: Get the output status
               run: echo "${{ steps.deploy.outputs.status }}"
