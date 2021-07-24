@@ -15,7 +15,7 @@ services:
     networks:
       - app-network
   webserver:
-    image: nginx:alpine
+    image: 877976363238.dkr.ecr.us-west-2.amazonaws.com/myprojectdemo:b64dbe88be4620cf90d0b2bf6e6a0ef2ab209a30
     container_name: webserver
     restart: unless-stopped
     tty: true
