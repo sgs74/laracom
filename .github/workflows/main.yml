@@ -48,14 +48,8 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: myprojectdemos
           IMAGE_TAG: ${{ github.sha }}
---- 
-  sonarcloud: 
-    runs-on: ubuntu-latest
-    steps: 
+          
       - uses: actions/checkout@v2
-        with: 
-          fetch-depth: 0
-
       - name: "SonarCloud Scan"
         uses: sonarsource/sonarcloud-github-action@master
         env: 
