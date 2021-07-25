@@ -49,7 +49,6 @@ jobs:
           ECR_REPOSITORY: myprojectdemos
           IMAGE_TAG: ${{ github.sha }}
 --- 
-jobs: 
   sonarcloud: 
     runs-on: ubuntu-latest
     steps: 
