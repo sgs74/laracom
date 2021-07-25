@@ -51,8 +51,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+    steps: 
+    uses: actions/checkout@v2
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
