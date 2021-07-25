@@ -48,16 +48,29 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: myprojectdemos
           IMAGE_TAG: ${{ github.sha }}
-
-  sonarcloud:
+--- 
+jobs: 
+  sonarcloud: 
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
+    steps: 
+      - 
+        uses: actions/checkout@v2
+        with: 
           fetch-depth: 0
-      - name: SonarCloud Scan
+      - 
+        env: 
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
+        name: "SonarCloud Scan"
         uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+name: "Main Workflow"
+true: 
+  pull_request: 
+    types: 
+      - opened
+      - synchronize
+      - reopened
+  push: 
+    branches: 
+      - master
+
