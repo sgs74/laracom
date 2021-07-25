@@ -53,10 +53,10 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
   test:
    - name: sonarcloud:
-   runs-on: ubuntu-latest
-   steps:
-    - uses: actions/checkout@v2
-      with:
+     runs-on: ubuntu-latest
+     steps:
+      - uses: actions/checkout@v2
+        with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
     - name: SonarCloud Scan
