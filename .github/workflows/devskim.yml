@@ -1,7 +1,7 @@
 name: ACR with DevSkim
-
-on: [push, pull_request]
-
+'on':
+  - push
+  - pull_request
 jobs:
   ACR:
     name: DevSkim
@@ -12,6 +12,7 @@ jobs:
       - uses: microsoft/DevSkim-Action@v1
       - uses: github/codeql-action/upload-sarif@v1
         with:
-         sarif_file: devskim-results.sarif
-         output-filename: devskim-results.sarif
-         output-directory: $GITHUB_WORKSPACE
+          sarif_file: devskim-results.sarif
+          output-filename: devskim-results.sarif
+          output-directory: $GITHUB_WORKSPACE
+
